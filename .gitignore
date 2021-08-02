@@ -28,3 +28,6 @@
 
 # Ignore simplecov
 /coverage
+
+# Ignore DS_store
+/.DS_Store
