@@ -38,21 +38,21 @@ ActiveRecord::Schema.define(version: 2021_08_02_195806) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "drink_subscriptions", force: :cascade do |t|
+    t.bigint "subscription_id", null: false
+    t.bigint "tea_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subscription_id"], name: "index_drink_subscriptions_on_subscription_id"
+    t.index ["tea_id"], name: "index_drink_subscriptions_on_tea_id"
+  end
+
   create_table "subscriptions", force: :cascade do |t|
     t.string "title"
     t.integer "frequency"
     t.decimal "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "tea_subscriptions", force: :cascade do |t|
-    t.bigint "subscription_id", null: false
-    t.bigint "tea_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["subscription_id"], name: "index_tea_subscriptions_on_subscription_id"
-    t.index ["tea_id"], name: "index_tea_subscriptions_on_tea_id"
   end
 
   create_table "teas", force: :cascade do |t|
@@ -65,6 +65,6 @@ ActiveRecord::Schema.define(version: 2021_08_02_195806) do
 
   add_foreign_key "customer_subscriptions", "customers"
   add_foreign_key "customer_subscriptions", "subscriptions"
-  add_foreign_key "tea_subscriptions", "subscriptions"
-  add_foreign_key "tea_subscriptions", "teas"
+  add_foreign_key "drink_subscriptions", "subscriptions"
+  add_foreign_key "drink_subscriptions", "teas"
 end
