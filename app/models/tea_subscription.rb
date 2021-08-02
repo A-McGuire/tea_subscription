@@ -1,2 +1,2 @@
-class TeaSubscriptions < ApplicationRecord
+class TeaSubscription < ApplicationRecord
 end
