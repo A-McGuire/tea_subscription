@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_02_193558) do
+ActiveRecord::Schema.define(version: 2021_08_02_194428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 2021_08_02_193558) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "tea_subscriptions", force: :cascade do |t|
+    t.bigint "subscription_id", null: false
+    t.bigint "tea_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subscription_id"], name: "index_tea_subscriptions_on_subscription_id"
+    t.index ["tea_id"], name: "index_tea_subscriptions_on_tea_id"
+  end
+
   create_table "teas", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -31,4 +40,6 @@ ActiveRecord::Schema.define(version: 2021_08_02_193558) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "tea_subscriptions", "subscriptions"
+  add_foreign_key "tea_subscriptions", "teas"
 end
