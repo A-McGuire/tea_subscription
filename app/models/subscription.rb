@@ -8,4 +8,12 @@ class Subscription < ApplicationRecord
 
   has_many :customer_subscriptions, dependent: :destroy
   has_many :customers, through: :customer_subscriptions
+
+    class << self
+    def all_customer_subscriptions(id)
+      binding.pry
+      where(customer_id: id, status: :active)
+      .or(self.where(customer_id: id, status: :cancelled))
+    end
+  end
 end

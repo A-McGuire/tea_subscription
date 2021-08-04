@@ -6,11 +6,4 @@ class CustomerSubscription < ApplicationRecord
 
   belongs_to :customer
   belongs_to :subscription
-
-  class << self
-    def all_customer_subscriptions(id)
-      where(customer_id: id, status: :active)
-      .or(self.where(customer_id: id, status: :cancelled))
-    end
-  end
 end
