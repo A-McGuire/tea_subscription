@@ -35,7 +35,7 @@ RSpec.describe Subscription, type: :model do
       customer_subscription4 = FactoryBot.create(:customer_subscription, status: :cancelled, customer_id: customer3.id, subscription_id: subscription4.id)
       customer_subscription5 = FactoryBot.create(:customer_subscription, status: :active, customer_id: customer3.id, subscription_id: subscription5.id)
       customer_subscription6 = FactoryBot.create(:customer_subscription, status: :cancelled, customer_id: customer1.id, subscription_id: subscription5.id)
-
+      
       expect(Subscription.all_customer_subscriptions(customer1.id)).to eq([subscription5])
       expect(Subscription.all_customer_subscriptions(customer2.id)).to eq([])
       expect(Subscription.all_customer_subscriptions(customer3.id)).to eq([subscription4, subscription5])

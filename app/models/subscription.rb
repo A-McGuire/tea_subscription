@@ -11,9 +11,7 @@ class Subscription < ApplicationRecord
 
     class << self
     def all_customer_subscriptions(id)
-      binding.pry
-      where(customer_id: id, status: :active)
-      .or(self.where(customer_id: id, status: :cancelled))
+      joins(:customer_subscriptions).where("customer_subscriptions.customer_id = ?", id).where("customer_subscriptions.status = ? or customer_subscriptions.status = ?", 1, 2)
     end
   end
 end
