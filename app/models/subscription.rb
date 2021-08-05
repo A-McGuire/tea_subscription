@@ -12,9 +12,8 @@ class Subscription < ApplicationRecord
     class << self
     def all_customer_subscriptions(id)
       joins(:customer_subscriptions)
-      .select('subscriptions.*, customer_subscriptions.status')
+      .select('subscriptions.*, customer_subscriptions.active')
       .where("customer_subscriptions.customer_id = ?", id)
-      .where("customer_subscriptions.status = ? or customer_subscriptions.status = ?", 1, 2)
     end
   end
 end
