@@ -17,7 +17,7 @@ class SubscriptionsFacade
       case params[:operation]
       when 'subscribe'
         customer_subscription = CustomerSubscription.find_or_create_by(customer_id: params[:customer_id], subscription_id: params[:subscription_id])
-        customer_subscription.active = true
+        customer_subscription.update(active: true)
         true if customer_subscription
       when 'cancel'
         customer_subscription = CustomerSubscription.find_by(customer_id: params[:customer_id], subscription_id: params[:subscription_id])
