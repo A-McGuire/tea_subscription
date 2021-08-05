@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2021_08_02_195806) do
   create_table "customer_subscriptions", force: :cascade do |t|
     t.bigint "customer_id", null: false
     t.bigint "subscription_id", null: false
-    t.integer "status"
+    t.boolean "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_customer_subscriptions_on_customer_id"
